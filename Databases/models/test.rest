@@ -1,0 +1,31 @@
+# Get all users
+GET http://localhost:3000/api/users
+
+###
+
+# Create a new user
+POST http://localhost:3000/api/users
+Content-Type: application/json
+
+{
+  "name": "Junaid",
+  "age": 24,
+  "weight": 75
+}
+
+###
+
+# Update user by ID
+PUT http://localhost:3000/api/users/68ad8f51cafd5fe1715a7c7d
+Content-Type: application/json
+
+{
+  "name": "Hamza Updated",
+  "age": 23,
+  "weight": 72
+}
+
+###
+
+# Delete user by ID
+DELETE http://localhost:3000/api/users/68ad8f51cafd5fe1715a7c7d

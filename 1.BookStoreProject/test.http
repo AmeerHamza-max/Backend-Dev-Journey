@@ -1,0 +1,36 @@
+### Add a new book
+POST http://127.0.0.1:3001/api/books/add
+Content-Type: application/json
+
+{
+  "title": "Clean Code",
+  "author": "Robert Martin",
+  "year": 2008
+}
+
+###
+
+### Get all books
+GET http://127.0.0.1:3001/api/books/get
+
+###
+
+### Get single book by ID (replace :id with real ObjectId from MongoDB)
+GET http://127.0.0.1:3001/api/books/get/BOOK_ID_HERE
+
+###
+
+### Update a book
+PUT http://127.0.0.1:3001/api/books/update/68b023a5436bff6e1856d7a4
+Content-Type: application/json
+
+{
+  "title": "RDJ",
+  "author": "Iron man",
+  "year": 2011
+}
+
+###
+
+### Delete a book
+DELETE http://127.0.0.1:3001/api/books/delete/68b0198b6fa306fce6d6c8fc

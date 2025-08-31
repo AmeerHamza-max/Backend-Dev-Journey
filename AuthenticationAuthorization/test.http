@@ -1,0 +1,23 @@
+### Register a new user
+POST http://localhost:3000/api/auth/register
+Content-Type: application/json
+
+{
+  "username": "testuser",
+  "email": "testuser@example.com",
+  "password": "Test@12345",
+  "role": "user"
+}
+
+### Login a user
+POST http://localhost:3000/api/auth/login
+Content-Type: application/json
+
+{
+  "email": "testuser@example.com",
+  "password": "Test@12345"
+}
+
+### Access a protected route (replace <token> with JWT)
+GET http://localhost:3000/api/protected
+Authorization: Bearer <token>
