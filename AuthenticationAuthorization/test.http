@@ -5,19 +5,55 @@ Content-Type: application/json
 {
   "username": "testuser",
   "email": "testuser@example.com",
-  "password": "Test@12345",
+  "password": "password123",
   "role": "user"
 }
 
-### Login a user
+### Register a new admin
+POST http://localhost:3000/api/auth/register
+Content-Type: application/json
+
+{
+  "username": "adminuser",
+  "email": "admin@example.com",
+  "password": "admin123",
+  "role": "admin"
+}
+
+### Login as user
 POST http://localhost:3000/api/auth/login
 Content-Type: application/json
 
 {
-  "email": "testuser@example.com",
-  "password": "Test@12345"
+  "username": "testuser",
+  "password": "password123"
 }
 
-### Access a protected route (replace <token> with JWT)
-GET http://localhost:3000/api/protected
-Authorization: Bearer <token>
+### Login as admin
+POST http://localhost:3000/api/auth/login
+Content-Type: application/json
+
+{
+  "username": "adminuser",
+  "password": "admin123"
+}
+
+### Home route (user required)
+GET http://localhost:3000/api/home/welcome
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OGJhZmJjMzFjNDBjNzYwOTY1MjdiNGQiLCJ1c2VybmFtZSI6ImFkbWludXNlciIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc1NzE0ODM5NiwiZXhwIjoxNzU3MTQ5Mjk2fQ.IHEhyG5NX5ao316gPiFSQqJijpKz_VBT1kc2TgIRxck
+
+### Admin route (admin required)
+GET http://localhost:3000/api/admin/welcome
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OGJhZmJjMzFjNDBjNzYwOTY1MjdiNGQiLCJ1c2VybmFtZSI6ImFkbWludXNlciIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc1NzE0ODM5NiwiZXhwIjoxNzU3MTQ5Mjk2fQ.IHEhyG5NX5ao316gPiFSQqJijpKz_VBT1kc2TgIRxck
+
+### Upload an image (admin only)
+POST http://localhost:3000/api/image/upload
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OGJhZmJjMzFjNDBjNzYwOTY1MjdiNGQiLCJ1c2VybmFtZSI6ImFkbWludXNlciIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc1NzE0ODM5NiwiZXhwIjoxNzU3MTQ5Mjk2fQ.IHEhyG5NX5ao316gPiFSQqJijpKz_VBT1kc2TgIRxck
+Content-Type: multipart/form-data; boundary=MyBoundary
+
+--MyBoundary
+Content-Disposition: form-data; name="image"; filename="test.png"
+Content-Type: image/png
+
+< ./test.png
+--MyBoundary--
